@@ -47,16 +47,34 @@ namespace _4_hodina_vidostop
         {
             cislo1 = rnd.Next(5);
             img1.Source = new BitmapImage(new Uri(obrazky[cislo1]));
+
+            cislo2 = rnd.Next(5);
+            img2.Source = new BitmapImage(new Uri(obrazky[cislo2]));
+
+            cislo3 = rnd.Next(5);
+            img3.Source = new BitmapImage(new Uri(obrazky[cislo3]));
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-
+            if(cislo1 == cislo2 || cislo2 == cislo3 || cislo1 == cislo3)
+            {
+                skore = skore + 1;
+            }
+            if(cislo1 == cislo2 && cislo2 == cislo3)
+            {
+                skore = skore + 1;
+            }
+            lblSkore.Content = "Skóre: " + skore;
+            casovac.Stop();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-
+            casovac.Start();
+            img1.Source = null;
+            img2.Source = null;
+            img3.Source = null;
         }
     }
 }
